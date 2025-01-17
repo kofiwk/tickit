@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tickit/pages/home.dart';
+import 'package:tickit/provider/provider.dart';
 
 void main() async {
-  // init Hive
-  Hive.initFlutter();
+  // Initialize Hive
+  await Hive.initFlutter();
+  await Hive.openBox('mybox');
 
-  // open a box
-  var box = await Hive.openBox('mybox');
-
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ToDoProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
     );
   }
 }

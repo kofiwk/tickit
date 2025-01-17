@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tickit/utilities/button.dart';
 
 class DialogBox extends StatelessWidget {
-  final controller;
-  VoidCallback onSave;
-  VoidCallback onCancel;
+  final TextEditingController controller;
+  final VoidCallback onSave;
+  final VoidCallback onCancel;
 
-  DialogBox({super.key, required this.controller, required this.onSave, required this.onCancel});
+  DialogBox({
+    super.key,
+    required this.controller,
+    required this.onSave,
+    required this.onCancel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class DialogBox extends StatelessWidget {
               controller: controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Add a new task'
+                hintText: 'Add a new task',
               ),
             ),
             Row(
